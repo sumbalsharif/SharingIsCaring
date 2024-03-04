@@ -1,3 +1,29 @@
+import ugradio
+import snap_spec
+import numpy as np
+import matplotlib.pyplot as plt
+import astropy
+import time
+import glob
+import argparse 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--filename', '-f', help='name to give file')
+parser.add_argument('--timedelay', '-t', help='time delay in seconds')
+
+#parser to name files more conviniently
+args = parser.parse_args()
+file = args.filename
+timedelay = args.timedelay
+timedelay = int(timedelay)
+
+#Creating an empty dictionary for the point number (1st point, 2nd point, etc.) and corresponding Julian Date. 
+julian_dates = {}
+num = 0
+
+#Providing an interface for controlling the pointing of the two telescopes that constitute the interferometer.
+ifm = ugradio.interf.Interferometer()
+
 try:
     while True:
             #Get the initial Julian date. This sill be continously updated. 
